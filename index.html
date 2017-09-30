@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<div id="output"></div>
+	<button onclick="produce()">产生随机双色球</button>
+	<script>
+		// 蓝球总数
+		const BALLS_BLUE = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27,28, 29, 30, 31, 32, 33]
+		// 红球总数
+		const BALLS_RED = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+		// 要产生的蓝球个数
+		const BALLS_BLUE_COUNT = 6
+		// 要产生的红球个数
+		const BALLS_RED_COUNT = 1
+		// 产生随机双色球
+		function produce () {
+			// 最终产生的蓝球
+			let result_balls_blue = []
+			// 最终产生的红球
+			let result_balls_red = null
+			// 随机产生六个蓝球
+			while(!(result_balls_blue.length == 6)){
+				// 产生出一个蓝球
+				let ball = BALLS_BLUE[ Math.floor(Math.random()*BALLS_BLUE.length)]
+				// 当这个蓝球不在最终产生的蓝球里面时才放入
+				result_balls_blue.indexOf(ball) == -1 && result_balls_blue.push(ball)
+			}
+			// 蓝球排序
+			result_balls_blue.sort( (a, b) => a-b )
+			// 随机产生红球
+			result_balls_red = BALLS_RED[ Math.floor( Math.random()*BALLS_RED.length)]
+			document.getElementById('output').innerHTML = `${result_balls_blue} +${result_balls_red}`
+			console.log(`%c${result_balls_blue} %c+%c${result_balls_red}`,'color:blue','color:black','color:red')
+		}
+	</script>
+</body>
+</html>
